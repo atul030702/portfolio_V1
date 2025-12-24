@@ -23,10 +23,6 @@ export interface FlightTrajectory {
   length: number;
 }
 
-export interface RadarHeroProps {
-  onInitiateContact: () => void;
-  onOpenBriefing: () => void;
-}
 
 export interface PullRequest {
   id: string;
@@ -60,4 +56,19 @@ export interface Skill {
   name: string;
   level: number;
   status: 'active' | 'loading' | 'standby';
+}
+
+export interface CornerBoxProps {
+  children: React.ReactNode;
+  className?: string;
+  accentColor?: string;
+}
+
+export interface ScrambleModalProps {
+  onClose: () => void;
+  onOpenContact: () => void;
+}
+
+export interface ContactModalProps {
+  onClose: () => void;
 }

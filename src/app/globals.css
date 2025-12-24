@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #0a0c10;
   --foreground: #171717;
   --hud-green: #00FF41;
 }
@@ -16,7 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0a0c10;
     --foreground: #ededed;
   }
 }
@@ -25,4 +25,87 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .stroke-text {
+    -webkit-text-stroke: 1.5px #00FF41;
+    color: transparent;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.2));
+  }
+
+  @media (max-width: 768px) {
+    .stroke-text {
+      color: #00FF41;
+      -webkit-text-stroke: 0;
+    }
+  }
+
+  /* Animations from page.tsx */
+  @keyframes flare {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    50% {
+      filter: blur(2px);
+    }
+
+    100% {
+      transform: translate(var(--dx), var(--dy)) scale(0);
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  .animate-flare {
+    animation: flare 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    box-shadow: 0 0 10px #ff5f1f, 0 0 20px #ff5f1f;
+  }
+
+  .animate-in {
+    animation: animate-in 0.3s ease-out;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Popover API Styles */
+  [popover] {
+    background: transparent;
+    border: none;
+    margin: auto;
+    padding: 0;
+    overflow: visible;
+    color: inherit;
+  }
+
+  [popover]:popover-open {
+    animation: animate-in 0.3s ease-out;
+  }
+
+  [popover]::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    transition: all 0.5s allow-discrete;
+  }
+
+  /* Blur main content when any popover is open */
+  body:has(:popover-open) main>*:not([popover]) {
+    filter: blur(12px);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all 0.5s;
+  }
 }
