@@ -91,7 +91,7 @@ body {
     color: inherit;
   }
 
-  [popover]:popover-open {
+  [popover]:not(#custom-cursor):popover-open {
     animation: animate-in 0.3s ease-out;
   }
 
@@ -108,4 +108,40 @@ body {
     pointer-events: none;
     transition: all 0.5s;
   }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+.is-hovering .target-ring {
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: scale(1.1);
+  opacity: 1 !important;
+}
+
+.is-hovering .trk-lock {
+  display: block !important;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

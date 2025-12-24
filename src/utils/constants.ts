@@ -91,3 +91,11 @@ export const socialAccounts = [
     { label: 'Email', url: 'mailto:singhatul0307@gmail.com', type: 'Email' },
     { label: 'Resume', url: '#', type: 'Resume' },
 ];
+
+export const INTERACTIVE_SELECTORS = [
+    'button',
+    'a',
+    '[role="button"]',
+    '[type="submit"]',
+    '.interactive-target'
+].join(',');

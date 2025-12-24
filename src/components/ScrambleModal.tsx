@@ -2,7 +2,7 @@
 import React from 'react';
 import { ScrambleModalProps } from '../utils/interfaces';
 
-const ScrambleModal: React.FC<ScrambleModalProps & { id?: string }> = ({ onClose, onOpenContact, id = "scramble-modal" }) => {
+const ScrambleModal: React.FC<{ id?: string }> = ({ id = "scramble-modal" }) => {
     return (
         <div
             id={id}
